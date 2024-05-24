@@ -43,7 +43,36 @@ export const Changelog = defineDocumentType(() => ({
 	computedFields,
 }));
 
+export const Blog = defineDocumentType(() => ({
+	name: 'Blog',
+	filePathPattern: `blog/**/*.mdx`,
+	contentType: 'mdx',
+	fields: {
+		title: {
+			type: 'string',
+			required: true,
+		},
+		description: {
+			type: 'string',
+		},
+		date: {
+			type: 'date',
+			required: true,
+		},
+		showInBanner: {
+			type: 'boolean',
+			required: false,
+			default: false,
+		},
+		bannerText: {
+			type: 'string',
+			required: false,
+		},
+	},
+	computedFields,
+}));
+
 export default makeSource({
 	contentDirPath: './src/content',
-	documentTypes: [Changelog],
+	documentTypes: [Changelog, Blog],
 });
