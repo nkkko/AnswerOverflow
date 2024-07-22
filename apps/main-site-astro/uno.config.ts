@@ -2,11 +2,74 @@
 import { defineConfig, presetWind } from 'unocss';
 
 export default defineConfig({
-	presets: [presetWind({})],
+	presets: [presetWind()],
+	rules: [
+		// Hyphens don't seem to work, so this is a workaround
+		[
+			'bg-ao-blue',
+			{
+				'background-color': 'hsl(var(--ao-blue))',
+			},
+		],
+		[
+			'bg-ao-blue-foreground',
+			{
+				'background-color': 'hsl(var(--ao-blue))',
+			},
+		],
+	],
 	theme: {
 		fontFamily: {
 			header: 'var(--font-montserrat)',
 			body: 'var(--font-source-sans-3)',
+		},
+		backgroundColor: {
+			border: 'hsl(var(--border))',
+			input: 'hsl(var(--input))',
+			ring: 'hsl(var(--ring))',
+			background: 'hsl(var(--background))',
+			foreground: 'hsl(var(--foreground))',
+			primary: {
+				DEFAULT: 'hsl(var(--primary))',
+				foreground: 'hsl(var(--primary-foreground))',
+			},
+			'ao-blue': {
+				DEFAULT: 'hsl(var(--ao-blue))',
+				foreground: 'hsl(var(--ao-blue))',
+			},
+			aoBlue: {
+				DEFAULT: 'hsl(var(--ao-blue))',
+				foreground: 'hsl(var(--ao-blue))',
+			},
+			secondary: {
+				DEFAULT: 'hsl(var(--secondary))',
+				foreground: 'hsl(var(--secondary-foreground))',
+			},
+			destructive: {
+				DEFAULT: 'hsl(var(--destructive) / <alpha-value>)',
+				foreground: 'hsl(var(--destructive-foreground) / <alpha-value>)',
+			},
+			highlight: {
+				DEFAULT: 'hsl(var(--highlight) / <alpha-value>)',
+				foreground: 'hsl(var(--highlight-foreground) / <alpha-value>)',
+			},
+			muted: {
+				DEFAULT: 'hsl(var(--muted))',
+				foreground: 'hsl(var(--muted-foreground))',
+				background: 'hsl(var(--muted-background))',
+			},
+			accent: {
+				DEFAULT: 'hsl(var(--accent))',
+				foreground: 'hsl(var(--accent-foreground))',
+			},
+			popover: {
+				DEFAULT: 'hsl(var(--popover))',
+				foreground: 'hsl(var(--popover-foreground))',
+			},
+			card: {
+				DEFAULT: 'hsl(var(--card))',
+				foreground: 'hsl(var(--card-foreground))',
+			},
 		},
 		colors: {
 			border: 'hsl(var(--border))',
@@ -18,7 +81,7 @@ export default defineConfig({
 				DEFAULT: 'hsl(var(--primary))',
 				foreground: 'hsl(var(--primary-foreground))',
 			},
-			'ao-blue': {
+			aoBlue: {
 				DEFAULT: 'hsl(var(--ao-blue))',
 				foreground: 'hsl(var(--ao-blue))',
 			},
