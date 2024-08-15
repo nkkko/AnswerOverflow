@@ -16,6 +16,7 @@
 		"dev": "turbo run dev --parallel --no-cache",
 		"dev:lite": "turbo run dev --filter=main-site --filter=discord-bot --parallel --no-cache",
 		"dev:site": "turbo run dev --filter=main-site --no-cache",
+		"dev:astro": "turbo run dev --filter=main-site-astro --no-cache",
 		"migrate": "turbo run migrate",
 		"db:wipe": "turbo db:wipe",
 		"db:push": "turbo db:push",
