@@ -89,7 +89,7 @@ export async function upsertMessage(
 					await db.insert(dbAttachments).values(
 						attachmentSchema.parse({
 							...attachment,
-							proxyUrl: uploaded.Location,
+							proxyUrl: `https://cdn.answeroverflow.com/${attachment.id}/${attachment.filename}`,
 						}),
 					);
 				});
@@ -222,7 +222,7 @@ export async function fastUpsertManyMessages(data: BaseMessageWithRelations[]) {
 							await db.insert(dbAttachments).values(
 								attachmentSchema.parse({
 									...attachment,
-									proxyUrl: uploaded.Location,
+									proxyUrl: `https://cdn.answeroverflow.com/${attachment.id}/${attachment.filename}`,
 								}),
 							);
 						});

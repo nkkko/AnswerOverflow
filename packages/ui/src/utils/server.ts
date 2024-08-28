@@ -1,7 +1,7 @@
 import type { ServerPublic } from '@answeroverflow/api';
 export function getServerHomepageUrl(server: ServerPublic) {
 	if (
-		// eslint-disable-next-line n/no-process-env,turbo/no-undeclared-env-vars
+		// eslint-disable-next-line n/no-process-env
 		process.env.NODE_ENV !== 'production' &&
 		!server.customDomain
 	) {
@@ -11,7 +11,7 @@ export function getServerHomepageUrl(server: ServerPublic) {
 		return `https://www.answeroverflow.com/c/${server.id}`;
 	}
 	return `http${
-		// eslint-disable-next-line n/no-process-env,turbo/no-undeclared-env-vars
+		// eslint-disable-next-line n/no-process-env
 		process.env.NODE_ENV === 'production' ? 's' : ''
 	}://${server.customDomain}`;
 }

@@ -21,6 +21,7 @@ import {
 	toAOChannel,
 } from '../../utils/conversions';
 import { leaveServerIfNecessary } from '../../utils/denylist';
+import { uploadFileFromUrl } from '@answeroverflow/db/src/files';
 
 /*
   Guild related events are tracked here, this may make sense to split into multiple files as the complexity grows.
@@ -41,6 +42,14 @@ async function autoUpdateServerInfo(guild: Guild) {
 				getMemberCount(guild) > 0 ? getMemberCount(guild) : undefined,
 		},
 	});
+	// if it has a custom domain, upload their server icon to s3
+	if (upserted.customDomain && upserted.icon) {
+		await uploadFileFromUrl({
+			id: upserted.id,
+			filename: `${upserted.icon}/icon.png`,
+			url: `https://cdn.discordapp.com/icons/${upserted.id}/${upserted.icon}.png?size=${48}`,
+		});
+	}
 	registerServerGroup(
 		serverWithDiscordInfoToAnalyticsData({
 			guild,
@@ -168,9 +177,8 @@ export class SyncOnJoin extends Listener {
 			'Answer Overflow Account Id': guild.ownerId, // <---TODO: Not a great id to track with but best we've got
 		});
 		if (sharedEnvs.NODE_ENV !== 'test') {
-			const rhysUser = await this.container.client.users.fetch(
-				'523949187663134754',
-			);
+			const rhysUser =
+				await this.container.client.users.fetch('523949187663134754');
 			await rhysUser.send({
 				embeds: [makeGuildEmbed(guild, true)],
 			});
@@ -204,9 +212,8 @@ export class SyncOnDelete extends Listener {
 			}),
 		});
 		if (sharedEnvs.NODE_ENV !== 'test') {
-			const rhysUser = await this.container.client.users.fetch(
-				'523949187663134754',
-			);
+			const rhysUser =
+				await this.container.client.users.fetch('523949187663134754');
 			await rhysUser.send({
 				embeds: [makeGuildEmbed(guild, false)],
 			});

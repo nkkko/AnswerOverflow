@@ -14,7 +14,7 @@ ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"
 
 RUN npm install --global pnpm@9.1.2
-RUN pnpm add -g turbo@1.13.3
+RUN pnpm add -g turbo@2.0.14
 COPY . .
 RUN turbo prune --scope=@answeroverflow/discord-bot --docker
 
@@ -121,7 +121,7 @@ ARG MAX_NUMBER_OF_MESSAGES_TO_COLLECT
 ENV MAX_NUMBER_OF_MESSAGES_TO_COLLECT=$MAX_NUMBER_OF_MESSAGES_TO_COLLECT
 ###
 
-RUN pnpm turbo run build --filter=discord-bot...
+RUN pnpm turbo run build --filter=@answeroverflow/discord-bot...
 
 FROM node:lts-alpine AS runner
 
