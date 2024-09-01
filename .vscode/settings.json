@@ -1,5 +1,7 @@
 {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "eslint.format.enable": true,
-    "editor.formatOnSave": true
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"prettier.configPath": "./.prettierrc.mjs",
+	"eslint.format.enable": true,
+	"editor.formatOnSave": true,
+	"symlink-follow.autoFollow": true
 }

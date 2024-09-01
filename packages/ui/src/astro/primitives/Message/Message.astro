@@ -1,39 +1,21 @@
 ---
-import type { MessageWithDiscordAccount } from '@answeroverflow/db';
-type CosmeticProps = {
- 	showBorders?: boolean;
- 	className?: string;
-	fullRounded?: boolean;
-	loadingStyle?: 'lazy' | 'eager';
-}
-export type Props = ({
-    message: MessageWithDiscordAccount;
-	/**
-	   * If typed as true, will blur the content
-	   * If typed as a number, will blur the content, with the number as the number of successive messages blurred
-	*/
-	hidden: false;
-	/**
-	 * If typed as true, will collapse the content if longer than default
-	 * If typed as a number, will collapse the content if longer than the number
-	 */
-	collapseContent?: boolean | number;
-} | {
-    /**
-    * If typed as true, will blur the content
-    * If typed as a number, will blur the content, with the number as the number of successive messages blurred
-    */
-    hidden: true | number;
-}) & CosmeticProps;
-const {...rest} = Astro.props
+import type { MessageProps } from './Props';
+import MessageAuthor from "./MessageAuthor.astro"
+type Props = MessageProps
+const props = Astro.props;
 ---
-<div>
-    <slot name="author" />
+{
+  !props.hidden && (
+    <div>
+			<MessageAuthor {...props} />
 
-    <!-- Content -->
-    <slot name="text" />
-    <slot name="embeds" />
-    <slot name="attachments" />
+     	<!-- Content -->
+     	<slot name="text" />
+        meow
+     	<slot name="embeds" />
+     	<slot name="attachments" />
 
-    <slot name="footer" />
-</div>
+     	<slot name="footer" />
+    </div>
+  )
+}

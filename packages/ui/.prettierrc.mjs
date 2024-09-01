@@ -5,15 +5,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import("prettier").Config} */
 export default {
-	...prettierConfig,
-	plugins: ['prettier-plugin-tailwindcss', 'prettier-plugin-astro'],
-	overrides: [
-		{
-			files: '*.astro',
-			options: {
-				parser: 'astro',
-			},
-		},
-	],
-	tailwindConfig: __dirname + '/tailwind.config.cjs',
+  ...prettierConfig,
+  plugins: ['prettier-plugin-tailwindcss', 'prettier-plugin-astro'],
+  overrides: [
+    {
+      files: '*.astro',
+      options: {
+        parser: 'astro',
+      },
+    },
+  ],
 };

@@ -4,7 +4,7 @@
 // see the documentation: https://zed.dev/docs/configuring-zed#settings-files
 {
   "languages": {
-    "JavaScript": {
+    "Astro": {
       "format_on_save": {
         "external": {
           "command": "prettier",
@@ -13,7 +13,10 @@
             "{buffer_path}"
           ]
         }
-      }
+      },
+      "language_servers": [
+        "astro-language-server"
+      ]
     },
     "JSON": {
       "format_on_save": {
@@ -25,7 +28,6 @@
           ]
         }
       }
-    },
+    }
   }
-}
 }
